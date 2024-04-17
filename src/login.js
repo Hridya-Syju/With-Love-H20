@@ -71,7 +71,7 @@ function LoginForm() {
           </button>
           <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
             Don't have an account?{' '}
-            <a href="#signup" className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+            <a href="/signup" className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
               Sign up
             </a>
           </p>
@@ -82,4 +82,3 @@ function LoginForm() {
 }
 
 export default LoginForm;
-
