@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@material-tailwind/react";
 import { NavbarSimple } from './unavbar';
 import { db } from '../firebase';
-import { collection, addDoc, docRef } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // Inside your component function
 const storage = getStorage();
-
 
 function ReportPage() {
   const handlePhotoUpload = async (e) => {
@@ -33,38 +32,40 @@ function ReportPage() {
   const [photos, setPhotos] = useState([]);
   const [mapLink, setMapLink] = useState('');
   const [verificationStatus, setVerificationStatus] = useState('unverified');
+  const [aadharNo, setAadharNo] = useState('');
+  const [name, setName] = useState('');
+  const [previousReports, setPreviousReports] = useState([]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    // Fetch previous reports from the database when the component mounts
+    const fetchPreviousReports = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'report'));
+        const reports = [];
+        querySnapshot.forEach((doc) => {
+          reports.push(doc.data());
+        });
+        setPreviousReports(reports);
+      } catch (error) {
+        console.error('Error fetching previous reports:', error);
+      }
+    };
+
+    fetchPreviousReports();
+  }, []); // Fetch reports when component mounts
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can perform any action you need with the collected data,
-    // such as sending it to a server or processing it locally.
 
-    console.log("Selected Option:", selectedOption);
-    console.log("Description:", description);
-    console.log("Photos:", photos);
-    console.log("Map Link:", mapLink);
-    console.log("Verification Status:", verificationStatus);
-    // Reset form fields after submission
-
-    setSelectedOption('');
-    setDescription('');
-    setPhotos([]);
-    setMapLink('');
-    setVerificationStatus('unverified');
-  };
-
-
-  const addDocument = async () => {
     try {
-
       const docRef = await addDoc(collection(db, "report"), {
         category: selectedOption,
         desc: description,
         map: mapLink,
         pic: photos,
         status: verificationStatus,
-
-
+        aadharNo: aadharNo,
+        name: name
       });
 
       console.log('Document added successfully!');
@@ -72,11 +73,34 @@ function ReportPage() {
       console.error('Error adding document:', error);
     }
   };
+
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
       <NavbarSimple />
       <h1 className="text-2xl font-bold mb-4">Report Page</h1>
       <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="aadharNo" className="block text-sm font-medium text-gray-700">* Aadhar No:</label>
+          <input
+            id="aadharNo"
+            type="text"
+            value={aadharNo}
+            onChange={(e) => setAadharNo(e.target.value)}
+            required
+            className="mt-1 p-2 border rounded-md w-full"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">* Name:</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="mt-1 p-2 border rounded-md w-full"
+          />
+        </div>
         <div className="mb-4">
           <label htmlFor="selectedOption" className="block text-sm font-medium text-gray-700"> * Select Issue:</label>
           <select
@@ -135,24 +159,33 @@ function ReportPage() {
           </div>
         )}
 
-
         <Button
           type="submit"
           color="indigo"
-          ripple="light"
           onClick={() => {
-            if (selectedOption & description & mapLink) {
-              addDocument();
-            } else {
-              // Show an alert or notification indicating that at least one field is required
-              alert("Please fill required fields before submitting.");
+            if (!selectedOption || !description || !mapLink || !aadharNo || !name) {
+              // Show an alert or notification indicating that all fields are required
+              alert("Please fill all required fields before submitting.");
             }
           }}
         >
           Submit
         </Button>
-
       </form>
+
+      {/* Container for Previous Reports */}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-2">Previous Reports</h2>
+        <ul className="space-y-4">
+          {previousReports.map((report, index) => (
+            <li key={index} className="border p-4 rounded-md">
+              <p><span className="font-semibold">Category:</span> {report.category}</p>
+              <p><span className="font-semibold">Description:</span> {report.desc}</p>
+              {/* Add more fields here */}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
