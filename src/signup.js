@@ -7,11 +7,11 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [idImage, setIdImage] = useState(null);
+  const [aadhaarNumber, setAadhaarNumber] = useState('');
 
   const handleSignup = () => {
     // Implement your sign-up logic here
-    console.log('Signing up with:', firstName, lastName, email, phoneNumber, password, idImage);
+    console.log('Signing up with:', firstName, lastName, email, phoneNumber, password, aadhaarNumber);
     // You can use Firebase, Axios, or any other method for signing up
     // Example with Firebase:
     // firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -26,18 +26,12 @@ const SignupPage = () => {
     //   });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    // You can perform additional checks or validations here, such as file size or type
-    setIdImage(file);
-  };
-
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-xs bg-white p-6 rounded-md shadow-md">
+      <div className="w-full max-w-xs bg-white p-6 rounded-md shadow-md border border-gray-300">
         <h2 className="text-center text-lg font-bold mb-4">Sign Up</h2>
         <form className="space-y-4">
-          <div className="w-72">
+          <div className="flex flex-col">
             <Input
               type="text"
               value={firstName}
@@ -45,8 +39,6 @@ const SignupPage = () => {
               label="First Name"
               required
             />
-          </div>
-          <div className="w-72">
             <Input
               type="text"
               value={lastName}
@@ -54,8 +46,6 @@ const SignupPage = () => {
               label="Last Name"
               required
             />
-          </div>
-          <div className="w-72">
             <Input
               type="email"
               value={email}
@@ -63,8 +53,6 @@ const SignupPage = () => {
               label="Email"
               required
             />
-          </div>
-          <div className="w-72">
             <Input
               type="tel"
               value={phoneNumber}
@@ -72,8 +60,6 @@ const SignupPage = () => {
               label="Phone Number"
               required
             />
-          </div>
-          <div className="w-72">
             <Input
               type="password"
               value={password}
@@ -81,12 +67,11 @@ const SignupPage = () => {
               label="Password"
               required
             />
-          </div>
-          <div className="w-72">
             <Input
-              type="file"
-              onChange={handleImageChange}
-              label="ID Image"
+              type="text"
+              value={aadhaarNumber}
+              onChange={(e) => setAadhaarNumber(e.target.value)}
+              label="Aadhaar Number"
               required
             />
           </div>
@@ -101,7 +86,12 @@ const SignupPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignupPage;
+
+
+
+
+
 
