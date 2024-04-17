@@ -31,7 +31,7 @@ const SignupPage = () => {
       <div className="w-full max-w-xs bg-white p-6 rounded-md shadow-md border border-gray-300">
         <h2 className="text-center text-lg font-bold mb-4">Sign Up</h2>
         <form className="space-y-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-2">
             <Input
               type="text"
               value={firstName}
@@ -89,6 +89,7 @@ const SignupPage = () => {
 }
 
 export default SignupPage;
+
 
 
 
