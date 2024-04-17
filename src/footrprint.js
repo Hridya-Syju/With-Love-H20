@@ -15,7 +15,7 @@ function WaterFpCalc() {
   const [indirectEnergyProduction, setIndirectEnergyProduction] = useState(0);
 
   // State variable to store the calculated total water footprint
-  const [totalWaterFootprint, setTotalWaterFootprint] = useState(0);
+  const [totalWaterFootprint, setTotalWaterFootprint] = useState(null);
 
   // Function to handle changes in direct water usage inputs
   const handleDirectUsageChange = (event) => {
@@ -51,32 +51,38 @@ function WaterFpCalc() {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Personal Water Footprint Calculator</h1>
+      <h1 className="text-3xl font-bold mb-10">Personal Water Footprint Calculator</h1>
       <div className="mb-6">
         <h2 className="text-xl font-bold mb-2">Direct Water Usage</h2>
         <div className="space-y-2">
-          <Input color="indigo" value={directUsage.drinking} name="drinking" onChange={handleDirectUsageChange} label="Drinking (liters per day)" />
-          <Input color="indigo" value={directUsage.bathing} name="bathing" onChange={handleDirectUsageChange} label="Bathing (liters per day)" />
-          <Input color="indigo" value={directUsage.washingDishes} name="washingDishes" onChange={handleDirectUsageChange} label="Washing Dishes (liters per day)" />
-          <Input color="indigo" value={directUsage.cooking} name="cooking" onChange={handleDirectUsageChange} label="Cooking (liters per day)" />
-          <Input color="indigo" value={directUsage.laundry} name="laundry" onChange={handleDirectUsageChange} label="Laundry (liters per day)" />
+          <Input color="black" value={directUsage.drinking} name="drinking" onChange={handleDirectUsageChange} label="Drinking (liters per day)" />
+          <Input color="black" value={directUsage.bathing} name="bathing" onChange={handleDirectUsageChange} label="Bathing (liters per day)" />
+          <Input color="black" value={directUsage.washingDishes} name="washingDishes" onChange={handleDirectUsageChange} label="Washing Dishes (liters per day)" />
+          <Input color="black" value={directUsage.cooking} name="cooking" onChange={handleDirectUsageChange} label="Cooking (liters per day)" />
+          <Input color="black" value={directUsage.laundry} name="laundry" onChange={handleDirectUsageChange} label="Laundry (liters per day)" />
         </div>
       </div>
       <div className="mb-6">
-        <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Food Consumption (liters per day)</h2>
-        <h3>Click <a href='https://www.iberdrola.com/documents/20125/41026/Infographic_Water_Produce_Food.pdf/b1799b49-d87f-e9a9-f933-45cab9e58104?t=1628137775250' className='hover:text-blue-500'>here</a> to calculate the water usage of food production.</h3>
-        <Input color="indigo" value={indirectFoodConsumption} onChange={handleIndirectFoodConsumptionChange} />
+        <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Food Consumption </h2>
+        <Input color="indigo" value={indirectFoodConsumption}  onChange={handleIndirectFoodConsumptionChange} label="liters per day" />
       </div>
       <div className="mb-6">
-        <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Energy Production (liters per day)</h2>
-        <h3>Click <a href='https://www.iberdrola.com/documents/20125/41026/Infographic_Water_Produce_Food.pdf/b1799b49-d87f-e9a9-f933-45cab9e58104?t=1628137775250' className='hover:text-blue-500'>here</a> to calculate the water usage of energy production.</h3>
-        <Input color="indigo" value={indirectEnergyProduction} onChange={handleIndirectEnergyProductionChange} />
+        <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Energy Production </h2>
+        <Input color="indigo" value={indirectEnergyProduction}  onChange={handleIndirectEnergyProductionChange} label="liters per day" />
       </div>
       <Button color="blue" onClick={calculateTotalWaterFootprint}>Calculate Total Water Footprint</Button>
-      <div className="mt-4">
-        <h2 className="text-xl font-bold mb-2">Total Water Footprint (liters per day)</h2>
-        <p>{totalWaterFootprint}</p>
-      </div>
+      {totalWaterFootprint !== null && (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold mb-2">Total Water Footprint (liters per day)</h2>
+          <p>{totalWaterFootprint}</p>
+          {directUsage.bathing > 30 && (
+            <div className="mt-4">
+              <h2 className="text-xl font-bold mb-2">Suggestions</h2>
+              <p>Try using less water to bathe.</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
