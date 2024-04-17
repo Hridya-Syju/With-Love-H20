@@ -1,14 +1,24 @@
-import './App.css';
-import Forum from './forum'; // Import the Forum component
-import { Button } from "@material-tailwind/react";
+
+
+import ReportPage from './User/userreport';
+import Aureport from './LocalAu/aureport';
+import WaterFpCalc from './footrprint';
+import LoginForm from './login';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
     
-      <Forum /> {/* Render the Forum component */}
-    </div>
-  );
+      <Router>
+        <Routes>
+          <Route path="/User/userreport" element={<ReportPage />} />
+          <Route path="/LocalAu/aureport" element={<Aureport />} />
+          <Route path="/" element={<LoginForm />} />
+        </Routes>
+      </Router>
+    );
 }
 
 export default App;
+
+
