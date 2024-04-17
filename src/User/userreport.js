@@ -1,10 +1,33 @@
 import React, { useState } from 'react';
 import { Button } from "@material-tailwind/react";
 import { NavbarSimple } from './unavbar';
+import { db } from '../firebase';
+import { collection, addDoc, docRef } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+// Inside your component function
+const storage = getStorage();
+
+
 function ReportPage() {
-  const [name, setName] = useState('');
-  const [dob, setDOB] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const handlePhotoUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    const uploadedFiles = [];
+
+    try {
+      for (const file of files) {
+        const storageRef = ref(storage, `photos/${file.name}`);
+        await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(storageRef);
+        uploadedFiles.push(downloadURL);
+      }
+
+      setPhotos(uploadedFiles);
+    } catch (error) {
+      console.error('Error uploading photos:', error);
+    }
+  };
+
   const [selectedOption, setSelectedOption] = useState('');
   const [description, setDescription] = useState('');
   const [photos, setPhotos] = useState([]);
@@ -15,18 +38,14 @@ function ReportPage() {
     e.preventDefault();
     // Here you can perform any action you need with the collected data,
     // such as sending it to a server or processing it locally.
-    console.log("Name:", name);
-    console.log("Date of Birth:", dob);
-    console.log("Phone Number:", phoneNumber);
+
     console.log("Selected Option:", selectedOption);
     console.log("Description:", description);
     console.log("Photos:", photos);
     console.log("Map Link:", mapLink);
     console.log("Verification Status:", verificationStatus);
     // Reset form fields after submission
-    setName('');
-    setDOB('');
-    setPhoneNumber('');
+
     setSelectedOption('');
     setDescription('');
     setPhotos([]);
@@ -34,55 +53,36 @@ function ReportPage() {
     setVerificationStatus('unverified');
   };
 
-  const handlePhotoUpload = (e) => {
-    const files = Array.from(e.target.files);
-    setPhotos(files);
-  };
 
+  const addDocument = async () => {
+    try {
+
+      const docRef = await addDoc(collection(db, "report"), {
+        category: selectedOption,
+        desc: description,
+        map: mapLink,
+        pic: photos,
+        status: verificationStatus,
+
+
+      });
+
+      console.log('Document added successfully!');
+    } catch (error) {
+      console.error('Error adding document:', error);
+    }
+  };
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-        <NavbarSimple/>
+      <NavbarSimple />
       <h1 className="text-2xl font-bold mb-4">Report Page</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name:</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="mt-1 p-2 border rounded-md w-full"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="dob" className="block text-sm font-medium text-gray-700">Date of Birth:</label>
-          <input
-            id="dob"
-            type="date"
-            value={dob}
-            onChange={(e) => setDOB(e.target.value)}
-            required
-            className="mt-1 p-2 border rounded-md w-full"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number:</label>
-          <input
-            id="phoneNumber"
-            type="tel"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-            className="mt-1 p-2 border rounded-md w-full"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="selectedOption" className="block text-sm font-medium text-gray-700">Select Option:</label>
+          <label htmlFor="selectedOption" className="block text-sm font-medium text-gray-700"> * Select Issue:</label>
           <select
             id="selectedOption"
             value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
+            onChange={(a) => setSelectedOption(a.target.value)}
             required
             className="mt-1 p-2 border rounded-md w-full"
           >
@@ -99,18 +99,31 @@ function ReportPage() {
         </div>
         {selectedOption && (
           <div className="mb-4">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description:</label>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-700">* Description:</label>
             <textarea
               id="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(b) => setDescription(b.target.value)}
               className="mt-1 p-2 border rounded-md w-full"
             />
           </div>
         )}
         {selectedOption && (
           <div className="mb-4">
-            <label htmlFor="photos" className="block text-sm font-medium text-gray-700">Upload Photos:</label>
+            <label htmlFor="mapLink" className="block text-sm font-medium text-gray-700">* Map Link:</label>
+            <input
+              id="maplink"
+              type="text"
+              value={mapLink}
+              onChange={(c) => setMapLink(c.target.value)}
+              required
+              className="mt-1 p-2 border rounded-md w-full"
+            />
+          </div>
+        )}
+        {selectedOption && (
+          <div className="mb-4">
+            <label htmlFor="photos" className="block text-sm font-medium text-gray-700">  Upload Photos:</label>
             <input
               id="photos"
               type="file"
@@ -121,36 +134,24 @@ function ReportPage() {
             />
           </div>
         )}
-        {selectedOption && (
-          <div className="mb-4">
-            <label htmlFor="mapLink" className="block text-sm font-medium text-gray-700">Map Link:</label>
-            <input
-              id="mapLink"
-              type="text"
-              value={mapLink}
-              onChange={(e) => setMapLink(e.target.value)}
-              className="mt-1 p-2 border rounded-md w-full"
-            />
-          </div>
-        )}
-        {selectedOption && (
-          <div className="mb-4">
-            <label htmlFor="verificationStatus" className="block text-sm font-medium text-gray-700">Verification Status:</label>
-            <Button
-              type="button"
-              color={verificationStatus === 'unverified' ? 'red' : 'green'}
-              onClick={() =>
-                setVerificationStatus(
-                  verificationStatus === 'unverified' ? 'verified' : 'unverified'
-                )
-              }
-              className="mt-1 p-2 border rounded-md w-full"
-            >
-              {verificationStatus === 'unverified' ? 'Unverified' : 'Verified'}
-            </Button>
-          </div>
-        )}
-        <Button type="submit" color="indigo" ripple="light">Submit</Button>
+
+
+        <Button
+          type="submit"
+          color="indigo"
+          ripple="light"
+          onClick={() => {
+            if (selectedOption & description & mapLink) {
+              addDocument();
+            } else {
+              // Show an alert or notification indicating that at least one field is required
+              alert("Please fill required fields before submitting.");
+            }
+          }}
+        >
+          Submit
+        </Button>
+
       </form>
     </div>
   );
