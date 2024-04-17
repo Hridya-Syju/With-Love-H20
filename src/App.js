@@ -7,6 +7,7 @@ import LoginForm from './login';
 import SignupPage from './signup';
 import ProfilePage from './User/userprofile';
 import AboutUsPage from './User/aboutus';
+import Forum from './forum';
 
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<LoginForm />} />
           <Route path="/userprofile" element={<ProfilePage/>}/>
           <Route path="/aboutus"element={<AboutUsPage/>}/>
+          <Route path="/forum"element={<Forum/>}/>
         </Routes>
       </Router>
     );
