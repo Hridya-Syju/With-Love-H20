@@ -1,18 +1,17 @@
 import './App.css';
-import { Button } from "@material-tailwind/react";
+import WaterFpCalc from './footrprint';
 function App() {
   return (
     <div className="App">
       <header className="text-3xl font-bold underline">
         <p>
-          withloveh20
-          <Button>Button</Button>
+          Water Footprint Calculator
         </p>
       </header>
+      <WaterFpCalc/>
     </div>
   );
 }
 
 export default App;
 
- 
