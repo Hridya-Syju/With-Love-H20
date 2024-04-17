@@ -1,18 +1,14 @@
 import './App.css';
+import Forum from './forum'; // Import the Forum component
 import { Button } from "@material-tailwind/react";
+
 function App() {
   return (
     <div className="App">
-      <header className="text-3xl font-bold underline">
-        <p>
-          withloveh20
-          <Button>Button</Button>
-        </p>
-      </header>
+    
+      <Forum /> {/* Render the Forum component */}
     </div>
   );
 }
 
 export default App;
-
- 
