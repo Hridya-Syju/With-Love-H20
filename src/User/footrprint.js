@@ -75,10 +75,15 @@ function WaterFpCalc() {
         <div className="mt-4">
           <h2 className="text-xl font-bold mb-2">Total Water Footprint (liters per day)</h2>
           <p>{totalWaterFootprint}</p>
+          <h2 className="text-xl font-bold mb-2">Suggestions</h2>
+          {directUsage.washingDishes > 11 && (
+            <div className="mt-4">
+              <p>Try to use a basin while washing dishes to minimize runoff.</p>
+            </div>
+          )}
           {directUsage.bathing > 30 && (
             <div className="mt-4">
-              <h2 className="text-xl font-bold mb-2">Suggestions</h2>
-              <p>Try using less water to bathe.</p>
+              <p>Consider using a water-conserving showerhead or bathing using a bucket.</p>
             </div>
           )}
         </div>
