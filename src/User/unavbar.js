@@ -26,7 +26,7 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+        <a href="/footrprint" className="flex items-center hover:text-blue-500 transition-colors">
           Water FootPrint Calc
         </a>
       </Typography>
@@ -76,8 +76,10 @@ export function NavbarSimple() {
           href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5"
+          color="indigo"
         >
-          Material Tailwind
+          With Love, 
+          H2O
         </Typography>
         <div className="hidden lg:block">
           <NavList />
