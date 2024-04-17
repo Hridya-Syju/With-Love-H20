@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Input } from "@material-tailwind/react";
+import { db } from "./firebase"; // Import Firestore instance
+import { collection, setDoc, doc,addDoc } from "firebase/firestore";
 
 const SignupPage = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [aadhaarNumber, setAadhaarNumber] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [aadhaarNumber, setAadhaarNumber] = useState("");
 
-  const handleSignup = () => {
-    // Implement your sign-up logic here
-    console.log('Signing up with:', firstName, lastName, email, phoneNumber, password, aadhaarNumber);
-    // You can use Firebase, Axios, or any other method for signing up
-    // Example with Firebase:
-    // firebase.auth().createUserWithEmailAndPassword(email, password)
-    //   .then((userCredential) => {
-    //     // Signed up successfully
-    //     const user = userCredential.user;
-    //     console.log('User signed up:', user);
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors
-    //     console.error('Sign-up error:', error);
-    //   });
+  const handleSignup = async () => {
+    console.log("db", db);
+    const abu = collection(db, "newCollection");
+    await addDoc(abu, {
+      firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+        aadhaarNumber: aadhaarNumber,
+    });
+    // Push user details to Firestore in a new collection called 'newCollection'
   };
 
   return (
@@ -86,13 +85,6 @@ const SignupPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SignupPage;
-
-
-
-
-
-
-
