@@ -9,7 +9,7 @@ const ProfilePage = () => {
       firstName: "Mara",
       lastName: "a",
       email: "mariatreesaanoop@gmail.com",
-      phoneNumber: "hi@gmail.com",
+      phoneNumber: "987654",
       password: "12345",
       aadhaarNumber: "12345",
     },
