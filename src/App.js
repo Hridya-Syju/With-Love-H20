@@ -5,6 +5,7 @@ import Aureport from './LocalAu/aureport';
 import WaterFpCalc from './User/footrprint';
 import LoginForm from './login';
 import SignupPage from './signup';
+import ProfilePage from './User/userprofile';
 
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/footrprint" element={<WaterFpCalc />} />
           <Route path="/" element={<LoginForm />} />
+          <Route path="/userprofile" element={<ProfilePage/>}/>
         </Routes>
       </Router>
     );
