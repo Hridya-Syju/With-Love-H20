@@ -13,6 +13,7 @@ import AwarenessPage from './User/awareness'
 
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
+
 function App() {
   return (
     
@@ -24,10 +25,12 @@ function App() {
           <Route path="/footrprint" element={<WaterFpCalc />} />
           <Route path="/" element={<LoginForm />} />
           <Route path="/userprofile" element={<ProfilePage/>}/>
-          <Route path="/aboutus"element={<AboutUsPage/>}/>
+
+          <Route path="aboutus"element={<AboutUsPage/>}/>
           <Route path="/forum"element={<Forum/>}/>
           <Route path="/awareness"element={<AwarenessPage/>}/>
         
+
         </Routes>
       </Router>
     );
