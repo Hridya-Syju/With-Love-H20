@@ -6,6 +6,8 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import './aboutl';
+import './lprofile';
 
  
 function NavList() {
@@ -17,8 +19,8 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Pages
+        <a href="/aboutl" className="flex items-center hover:text-blue-500 transition-colors">
+          About Us
         </a>
       </Typography>
       <Typography
@@ -27,8 +29,8 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Account
+        <a href="/lprofile" className="flex items-center hover:text-blue-500 transition-colors">
+          Profile
         </a>
       </Typography>
       <Typography
@@ -37,20 +39,11 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Blocks
+        <a href="/lforum" className="flex items-center hover:text-blue-500 transition-colors">
+         Forum
         </a>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Docs
-        </a>
-      </Typography>
+      
     </ul>
   );
 }
