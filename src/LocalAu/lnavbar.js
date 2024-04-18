@@ -6,6 +6,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
  
 function NavList() {
   return (
@@ -77,7 +78,8 @@ function NavbarSimple() {
           variant="h6"
           className="mr-4 cursor-pointer py-1.5"
         >
-          Material Tailwind
+          With Love,
+          H2O
         </Typography>
         <div className="hidden lg:block">
           <NavList />

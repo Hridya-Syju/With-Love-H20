@@ -5,13 +5,13 @@ const ProfilePage = () => {
   // Hardcoded user details
   const userDetails = [
     {
-      id: 1,
-      firstName: "Maria",
-      lastName: "a",
-      email: "mariatreesaanoop@gmail.com",
-      phoneNumber: "hi@gmail.com",
-      password: "12345",
-      aadhaarNumber: "12345",
+      id: 2,
+      firstName: "Ashok",
+      lastName: "Arin",
+      email: "ashok@kwa.gov.in",
+      phoneNumber: "28081294894",
+      password: "kwa1234",
+      aadhaarNumber: "u1283781273",
     },
     // Add more users as needed
   ];
