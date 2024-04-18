@@ -1,4 +1,5 @@
 PROJECT NAME: WithLoveH2O
+
 DESCRIPTION:
 Reporting Interface for Users: This feature allows users to report issues or concerns related to water supply and maintenance in their area. It provides a direct channel for community members to communicate problems they encounter.
 Report Inbox and Status Setter for Local Authorities: This aspect of the platform enables local authorities to receive, review, and address the reports submitted by users. It streamlines communication between the community and the authorities, ensuring prompt responses to issues.
@@ -12,15 +13,19 @@ Team Members:
 2.Alina Mary Sam
 3.Hridya Syju 
 4.Maria Treesa Anoop
+
 ppt:
-https://docs.google.com/presentation/d/1-W0pJO5KCZCEhSTIhamEsXEjw1ofGLkk4ZqEFEO2vtI/edit#slide=id.g110a993df5c_0_0
+https://docs.google.com/presentation/d/1YTCYgM6no2hldG29jt408MP9UVB88lAh/edit?usp=drive_link&ouid=106810453077006622615&rtpof=true&sd=true
+
 Libraries used:
 React
+
 How to configure:
 create a project for react.
 install firebase .create a project in firebase.
 configure react with firebase.
 then u may run the code.
+
 How to Run:
 Reporting Page:
 The reporting page allows users to submit reports regarding water-related issues they encounter in their communities.
