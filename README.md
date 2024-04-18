@@ -8,6 +8,8 @@ Suggestions for Sustainable Water Usage: Providing tips and suggestions for user
 Forum for Local Authorities: A space where local authorities can interact with the public, share updates, announcements, and initiatives related to water management. It fosters transparency and community engagement in decision-making processes.
 Awareness Page: This section of the platform aims to educate the public about the importance of water conservation and responsible usage. It could feature articles, infographics, videos, and other educational content to raise awareness and promote behavioral change.
 Overall, "WithLoveH2O" is  a holistic solution addressing various aspects of water management, from reporting and monitoring to education and community engagement. It has the potential to make a significant impact in Kerala by empowering individuals and authorities to work together towards sustainable water management practices.
+
+
 Team Members:
 1.Beneeta Bency
 2.Alina Mary Sam
