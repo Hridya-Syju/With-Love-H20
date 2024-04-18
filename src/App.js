@@ -8,6 +8,8 @@ import SignupPage from './signup';
 import ProfilePage from './User/userprofile';
 import AboutUsPage from './User/aboutus';
 import Forum from './forum';
+ 
+import AwarenessPage from './User/awareness'
 
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/userprofile" element={<ProfilePage/>}/>
           <Route path="/aboutus"element={<AboutUsPage/>}/>
           <Route path="/forum"element={<Forum/>}/>
+          <Route path="/awareness"element={<AwarenessPage/>}/>
+        
         </Routes>
       </Router>
     );
