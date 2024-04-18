@@ -46,7 +46,7 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+        <a href="/forum" className="flex items-center hover:text-blue-500 transition-colors">
           Forum
         </a>
       </Typography>
