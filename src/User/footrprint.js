@@ -64,17 +64,24 @@ function WaterFpCalc() {
       </div>
       <div className="mb-6">
         <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Food Consumption </h2>
-        <Input color="indigo" value={indirectFoodConsumption}  onChange={handleIndirectFoodConsumptionChange} label="liters per day" />
+        <Input color="indigo" value={indirectFoodConsumption}  onChange={handleIndirectFoodConsumptionChange} label="liters per day." />
+        <span> Click <a href="https://www.iberdrola.com/documents/20125/41026/Infographic_Water_Produce_Food.pdf/b1799b49-d87f-e9a9-f933-45cab9e58104?t=1628137775250">here</a> to calculate water for Food production.</span> 
       </div>
       <div className="mb-6">
         <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Energy Production </h2>
         <Input color="indigo" value={indirectEnergyProduction}  onChange={handleIndirectEnergyProductionChange} label="liters per day" />
+        <span> Click <a href="https:">here</a> to calculate water for Food production.</span> 
       </div>
       <Button color="blue" onClick={calculateTotalWaterFootprint}>Calculate Total Water Footprint</Button>
       {totalWaterFootprint !== null && (
         <div className="mt-4">
           <h2 className="text-xl font-bold mb-2">Total Water Footprint (liters per day)</h2>
           <p>{totalWaterFootprint}</p>
+          {totalWaterFootprint > 135 ? (
+            <p className="font-bold text-red-500">Footprint over the optimal level</p>
+          ) : (
+            <p className="font-bold text-green-500">Footprint optimal</p>
+          )}
           <h2 className="text-xl font-bold mb-2">Suggestions</h2>
           {directUsage.washingDishes > 11 && (
             <div className="mt-4">
