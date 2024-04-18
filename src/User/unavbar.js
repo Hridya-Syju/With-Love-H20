@@ -16,7 +16,7 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+        <a href="/aboutus" className="flex items-center hover:text-blue-500 transition-colors">
           About Us
         </a>
       </Typography>
@@ -46,8 +46,18 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
+        <a href="/forum" className="flex items-center hover:text-blue-500 transition-colors">
           Forum
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a href="/awareness" className="flex items-center hover:text-blue-500 transition-colors">
+          Awareness
         </a>
       </Typography>
     </ul>
