@@ -9,7 +9,7 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === 'hi@gmail.com' && password === '123') {
+    if (email === 'mariatreesaanoop@gmail.com' && password === '123') {
       // Redirect to user report page
       setAuthenticated(true);
       setRedirect('/User/userreport');

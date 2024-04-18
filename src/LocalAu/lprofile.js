@@ -1,17 +1,17 @@
 import React from "react";
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
 
-const ProfilePage = () => {
+const LProfilePage = () => {
   // Hardcoded user details
   const userDetails = [
     {
       id: 1,
-      firstName: "Maria",
-      lastName: "Anoop",
-      email: "mariatreesaanoop@gmail.com",
-      phoneNumber: "987654",
-      password: "123",
-      aadhaarNumber: "12345",
+      firstName: "Ashok",
+      lastName: "Arum",
+      email: "ashok@kwa.gov.in",
+      phoneNumber: "929333333",
+      password: "kwa1234",
+      aadhaarNumber: "348932",
     },
     // Add more users as needed
   ];
@@ -43,4 +43,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default LProfilePage;
