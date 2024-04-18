@@ -70,7 +70,7 @@ function WaterFpCalc() {
       <div className="mb-6">
         <h2 className="text-xl font-bold mb-2">Indirect Water Usage for Energy Production </h2>
         <Input color="indigo" value={indirectEnergyProduction}  onChange={handleIndirectEnergyProductionChange} label="liters per day" />
-        <span> Click <a href="https:">here</a> to calculate water for Food production.</span> 
+        <span> Click <a href="https://drive.google.com/file/d/1b6-qsfi3lZGARHH2JuU5ac2lNb69UeoB/view?usp=sharing">here</a> to calculate water for Energy production.</span> 
       </div>
       <Button color="blue" onClick={calculateTotalWaterFootprint}>Calculate Total Water Footprint</Button>
       {totalWaterFootprint !== null && (
